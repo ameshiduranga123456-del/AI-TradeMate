@@ -5,18 +5,15 @@ import pandas as pd
 import time
 from datetime import datetime
 
-# --- ලොගින් විස්තර ---
+# --- Login සැකසුම ---
 names = ['User']
 usernames = ['admin']
-passwords = ['1234'] 
+passwords = ['1234']
 
-hashed_passwords = stauth.Hasher(passwords).hash()
+# 0.3.2 version එකට ගැලපෙන ලෙස Hasher භාවිතා කිරීම
+hashed_passwords = stauth.Hasher(passwords).generate()
 
-authenticator = stauth.Authenticate(
-    dict(zip(usernames, hashed_passwords)), 
-    'some_cookie', 
-    'some_key'
-)
+authenticator = stauth.Authenticate(names, usernames, hashed_passwords, 'some_cookie', 'some_key', 30)
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 
