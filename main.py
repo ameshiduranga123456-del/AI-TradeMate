@@ -5,18 +5,23 @@ import pandas as pd
 import time
 from datetime import datetime
 
-# --- ලොගින් විස්තර (මෙතන Password එක වෙනස් කරගන්න) ---
+# --- ලොගින් විස්තර ---
 names = ['User']
 usernames = ['admin']
-passwords = ['1234'] # මෙය ඔබට අවශ්‍ය පරිදි වෙනස් කරන්න
-hashed_passwords = stauth.Hasher(passwords).generate()
+passwords = ['1234'] 
 
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords, 'some_cookie', 'some_key')
+hashed_passwords = stauth.Hasher(passwords).hash()
+
+authenticator = stauth.Authenticate(
+    dict(zip(usernames, hashed_passwords)), 
+    'some_cookie', 
+    'some_key'
+)
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 
 if authentication_status:
-    # --- ලොගින් වුණාට පස්සේ පේන දේ ---
+    # --- Dashboard කොටස ---
     st.title("📊 Live Market Signal Monitor")
     authenticator.logout('Logout', 'sidebar')
     
