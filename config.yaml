@@ -1,12 +1,1 @@
-credentials:
-  usernames:
-    admin:
-      email: ameshiduranga123456@gmail.com
-      name: Amesh Iduranga
-      password: @Amesh2009
-cookie:
-  expiry_days: 15
-  key: random_signature_key
-  name: some_cookie_name
-preauthorized:
-  emails: []
+
