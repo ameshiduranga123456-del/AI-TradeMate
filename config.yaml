@@ -1,11 +1,11 @@
 credentials:
   usernames:
     admin:
-      email: admin@example.com
-      name: Admin User
-      password: $2b$12$R.v.d.M.b.l.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
+      email:ameshiduranga123456@gmail.com
+      name: Amesh Iduranga
+      password: @Amesh2009
 cookie:
-  expiry_days: 30
+  expiry_days: 15
   key: random_signature_key
   name: some_cookie_name
 preauthorized:
