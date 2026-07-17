@@ -1,19 +1,22 @@
 import streamlit as st
 import streamlit_authenticator as stauth
+import yaml
+from yaml.loader import SafeLoader
 import yfinance as yf
 import pandas as pd
 import time
 from datetime import datetime
 
-# --- Login සැකසුම ---
-names = ['User']
-usernames = ['admin']
-passwords = ['1234']
+# config.yaml එක Load කිරීම
+with open('config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
 
-# 0.3.2 version එකට ගැලපෙන ලෙස Hasher භාවිතා කිරීම
-hashed_passwords = stauth.Hasher(passwords).generate()
-
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords, 'some_cookie', 'some_key', 30)
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days']
+)
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 
